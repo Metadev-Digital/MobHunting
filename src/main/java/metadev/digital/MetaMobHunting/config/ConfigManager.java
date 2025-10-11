@@ -83,6 +83,7 @@ public class ConfigManager extends AutoConfig {
 		setCategoryComment("mobs.breeze", "### Breeze settings ###");
 		setCategoryComment("mobs.bogged", "### Bogged settings ###");
 		setCategoryComment("mobs.cave_spider", "### Cave Spider settings ###");
+        setCategoryComment("mobs.coppergolem", "### Copper Golem settings ###");
 		setCategoryComment("mobs.creaking", "### Creaking settings ###");
 		setCategoryComment("mobs.creeper", "### Creeper settings ###");
 		setCategoryComment("mobs.drowned", "### Drowned settings ###");
@@ -731,6 +732,32 @@ public class ConfigManager extends AutoConfig {
 	@ConfigField(name = "cave_spider.head.message", category = "mobs")
 	public String caveSpiderHeadMessage = "§aThe §7{killed} §adropped a skull on the ground.";
 
+    // =====Copper Golem============================================
+    @ConfigField(name = "coppergolem.enabled", category = "mobs")
+    public boolean coppergolemEnabled = true;
+    @ConfigField(name = "coppergolem.message", category = "mobs")
+    public String coppergolemMessage = "You killed a §7{killed}";
+    @ConfigField(name = "coppergolem.money.amount", category = "mobs")
+    public String coppergolemMoney = "0";
+    @ConfigField(name = "coppergolem.money.chance", category = "mobs")
+    public double coppergolemMoneyChance = 1;
+    @ConfigField(name = "coppergolem.commands", category = "mobs")
+    public List<HashMap<String, String>> coppergolemCommands = new ArrayList<HashMap<String, String>>();
+    {
+        HashMap<String, String> values1 = new HashMap<String, String>();
+        values1.put("cmd", "give {player} copper_ingot 1");
+        values1.put("chance", "0.1");
+        coppergolemCommands.add(values1);
+    }
+    @ConfigField(name = "coppergolem.head.drophead", category = "mobs")
+    public boolean coppergolemHeadDropHead = true;
+    @ConfigField(name = "coppergolem.head.value", category = "mobs")
+    public String coppergolemHeadPrize = "0";
+    @ConfigField(name = "coppergolem.head.chance", category = "mobs")
+    public double coppergolemHeadDropChance = 0.05;
+    @ConfigField(name = "coppergolem.head.message", category = "mobs")
+    public String coppergolemHeadMessage = "§aThe §7{killed} §adropped a skull on the ground";
+
 	// =====Creaking============================================
 	@ConfigField(name = "creaking.enabled", category = "mobs")
 	public boolean creakingEnabled = true;
@@ -1025,7 +1052,7 @@ public class ConfigManager extends AutoConfig {
     @ConfigField(name = "happyghast.enabled", category = "mobs")
     public boolean happyghastEnabled = true;
     @ConfigField(name = "happyghast.message", category = "mobs")
-    public String happyghastMessge = "You killed a §7{killed}";
+    public String happyghastMessage = "You killed a §7{killed}";
     @ConfigField(name = "happyghast.money.amount", category = "mobs")
     public String happyghastMoney = "0";
     @ConfigField(name = "happyghast.money.chance", category = "mobs")
@@ -3566,7 +3593,10 @@ public class ConfigManager extends AutoConfig {
 	@ConfigField(name = "cow_level1", category = "achievements.hunter.mob_level")
 	public int cowLevel1 = 100;
 
-	@ConfigField(name = "creeper_level1", category = "achievements.hunter.mob_level")
+    @ConfigField(name = "coppergolem_level1", category = "achievements.hunter.mob_level")
+    public int coppergolemLevel1 = 100;
+
+    @ConfigField(name = "creeper_level1", category = "achievements.hunter.mob_level")
 	public int creeperLevel1 = 100;
 
 	@ConfigField(name = "donkey_level1", category = "achievements.hunter.mob_level")
@@ -4317,6 +4347,11 @@ public class ConfigManager extends AutoConfig {
 	@ConfigField(name = "skillreward_chance", category = "plugins.mcmmo.mobs.cow")
 	public double cowMcMMOSkillRewardChance = 0.025;
 	// Passive mob, risk free
+
+    @ConfigField(name = "skillreward_amount", category = "plugins.mcmmo.mobs.coppergolem")
+    public String coppergolemMcMMOSkillRewardAmount = "1:2";
+    @ConfigField(name = "skillreward_chance", category = "plugins.mcmmo.mobs.coppergolem")
+    public double coppergolemMcMMOSkillRewardChance = 0.1;
 
 	@ConfigField(name = "skillreward_amount", category = "plugins.mcmmo.mobs.creaking")
 	public String creakingMcMMOSkillRewardAmount = "1";
@@ -5129,6 +5164,8 @@ public class ConfigManager extends AutoConfig {
 			return chickenLevel1;
 		case Cow:
 			return cowLevel1;
+        case CopperGolem:
+            return coppergolemLevel1;
 		case Creeper:
 			return creeperLevel1;
 		case Donkey:
@@ -5336,6 +5373,8 @@ public class ConfigManager extends AutoConfig {
 			return getPrice(mob, tropicalFishHeadPrize);
 		case Cow:
 			return getPrice(mob, cowHeadPrize);
+        case CopperGolem:
+            return getPrice(mob, coppergolemHeadPrize);
 		case Creeper:
 			return getPrice(mob, creeperHeadPrize);
 		case Donkey:

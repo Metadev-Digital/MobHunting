@@ -408,7 +408,9 @@ public class RewardManager {
 
 		} else {
 			if (Server.isMC121OrNewer()){
-				if (mob instanceof Creaking)
+                if (mob instanceof CopperGolem)
+                    return getPrice(mob,plugin.getConfigManager().coppergolemMoney);
+				else if (mob instanceof Creaking)
 					return getPrice(mob,plugin.getConfigManager().creakingMoney);
 				else if (mob instanceof Breeze)
 					return getPrice(mob,plugin.getConfigManager().breezeMoney);
@@ -772,7 +774,9 @@ public class RewardManager {
 
 		} else {
 			if (Server.isMC121OrNewer()){
-				if (mob instanceof Creaking)
+                if (mob instanceof CopperGolem)
+                    return plugin.getConfigManager().coppergolemCommands;
+                else if (mob instanceof Creaking)
 					return plugin.getConfigManager().creakingCommands;
 				else if (mob instanceof Breeze)
 					return plugin.getConfigManager().breezeCommands;
@@ -1088,14 +1092,16 @@ public class RewardManager {
 
 		} else {
 			if (Server.isMC121OrNewer()){
-				if (mob instanceof Creaking)
+                if (mob instanceof CopperGolem)
+                    return plugin.getConfigManager().coppergolemMessage;
+                else if (mob instanceof Creaking)
 					return plugin.getConfigManager().creakingMessage;
 				else if (mob instanceof Breeze)
 					return plugin.getConfigManager().breezeMessage;
 				else if(mob instanceof Bogged)
 					return plugin.getConfigManager().boggedMessage;
                 else if(mob instanceof HappyGhast)
-                    return plugin.getConfigManager().happyghastMessge;
+                    return plugin.getConfigManager().happyghastMessage;
 			}
 			if (Server.isMC120OrNewer()){
 				if (mob instanceof Armadillo)
@@ -1397,7 +1403,9 @@ public class RewardManager {
 
 		} else {
 			if (Server.isMC121OrNewer()){
-				if (mob instanceof Creaking)
+                if(mob instanceof CopperGolem)
+                    return plugin.getConfigManager().coppergolemMoneyChance;
+				else if (mob instanceof Creaking)
 					return plugin.getConfigManager().creakingMoneyChance;
 				else if (mob instanceof Breeze)
 					return plugin.getConfigManager().breezeMoneyChance;
@@ -1708,7 +1716,9 @@ public class RewardManager {
 
 		} else {
 			if (Server.isMC121OrNewer()){
-				if (mob instanceof Creaking)
+                if (mob instanceof CopperGolem)
+                    return plugin.getConfigManager().coppergolemMcMMOSkillRewardChance;
+				else if (mob instanceof Creaking)
 					return plugin.getConfigManager().creakingMcMMOSkillRewardChance;
 				else if (mob instanceof Breeze)
 					return plugin.getConfigManager().breezeMcMMOSkillRewardChance;
@@ -2040,7 +2050,9 @@ public class RewardManager {
 
 		} else {
 			if (Server.isMC121OrNewer()){
-				if (mob instanceof Creaking)
+                if (mob instanceof CopperGolem)
+                    return getMcMMOXP(mob, plugin.getConfigManager().coppergolemMcMMOSkillRewardAmount);
+				else if (mob instanceof Creaking)
 					return getMcMMOXP(mob, plugin.getConfigManager().creakingMcMMOSkillRewardAmount);
 				else if (mob instanceof Breeze)
 					return getMcMMOXP(mob, plugin.getConfigManager().breezeMcMMOSkillRewardAmount);
@@ -2349,7 +2361,9 @@ public class RewardManager {
 
 		} else {
 			if (Server.isMC121OrNewer()){
-				if (mob instanceof Creaking)
+                if (mob instanceof CopperGolem)
+                    return plugin.getConfigManager().coppergolemEnabled;
+                else if (mob instanceof Creaking)
 					return plugin.getConfigManager().creakingEnabled;
 				else if (mob instanceof Breeze)
 					return plugin.getConfigManager().breezeEnabled;
@@ -2662,7 +2676,9 @@ public class RewardManager {
 
 		} else {
 			if (Server.isMC121OrNewer()){
-				if (mob instanceof Creaking)
+                if (mob instanceof CopperGolem)
+                    return plugin.getConfigManager().coppergolemHeadDropHead;
+				else if (mob instanceof Creaking)
 					return plugin.getConfigManager().creakingHeadDropHead;
 				else if (mob instanceof Breeze)
 					return plugin.getConfigManager().breezeHeadDropHead;
@@ -2978,7 +2994,9 @@ public class RewardManager {
 
 		} else {
 			if (Server.isMC121OrNewer()){
-				if (mob instanceof Creaking)
+                if (mob instanceof CopperGolem)
+                    return plugin.getConfigManager().coppergolemHeadDropChance;
+				else if (mob instanceof Creaking)
 					return plugin.getConfigManager().creakingHeadDropChance;
 				else if (mob instanceof Breeze)
 					return plugin.getConfigManager().breezeHeadDropChance;
@@ -3292,7 +3310,9 @@ public class RewardManager {
 
 		} else {
 			if (Server.isMC121OrNewer()){
-				if (mob instanceof Creaking)
+                if(mob instanceof CopperGolem)
+                    return plugin.getConfigManager().coppergolemHeadMessage;
+                else if (mob instanceof Creaking)
 					return plugin.getConfigManager().creakingHeadMessage;
 				else if (mob instanceof Breeze)
 					return plugin.getConfigManager().breezeHeadMessage;
@@ -3607,7 +3627,9 @@ public class RewardManager {
 
 		} else {
 			if (Server.isMC121OrNewer()){
-				if (mob instanceof Creaking)
+                if (mob instanceof CopperGolem)
+                    return getPrice(mob, plugin.getConfigManager().coppergolemHeadPrize);
+				else if (mob instanceof Creaking)
 					return getPrice(mob, plugin.getConfigManager().creakingHeadPrize);
 				else if (mob instanceof Breeze)
 					return getPrice(mob, plugin.getConfigManager().breezeHeadPrize);
