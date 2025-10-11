@@ -27,7 +27,7 @@ public class ResidenceCompat implements IMobHuntCompat, IFeatureHolder {
     // ****** Standard ******
     private Plugin compatPlugin;
     private static boolean enabled = false, supported = false, loaded = false;
-    private static String sMin, sMax, pMin = "5.1.7.7", pMax;
+    private static String sMin, sMax, pMin = "6.0.0.0", pMax;
     private static FeatureList features;
 
     // ****** Plugin Specific ******
