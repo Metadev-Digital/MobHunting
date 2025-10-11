@@ -10,14 +10,14 @@ import metadev.digital.metacustomitemslib.compatibility.enums.VersionSetIdentifi
 import metadev.digital.metacustomitemslib.compatibility.exceptions.FeatureNotFoundException;
 import metadev.digital.metacustomitemslib.compatibility.exceptions.SpinupShutdownException;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
-import com.massivecraft.factions.Board;
-import com.massivecraft.factions.FLocation;
-import com.massivecraft.factions.FPlayer;
-import com.massivecraft.factions.FPlayers;
-import com.massivecraft.factions.Faction;
+import dev.kitteh.factions.FPlayer;
+import dev.kitteh.factions.FPlayers;
+import dev.kitteh.factions.Faction;
+import dev.kitteh.factions.Factions;
 
 import metadev.digital.metacustomitemslib.compatibility.enums.SupportedPluginEntities;
 import metadev.digital.MetaMobHunting.MobHunting;
@@ -27,7 +27,7 @@ public class FactionsUUIDCompat implements IMobHuntCompat, IFeatureHolder {
     // ****** Standard ******
     private Plugin compatPlugin;
     private static boolean enabled = false, supported = false, loaded = false;
-    private static String sMin, sMax, pMin = "0.7.0", pMax;
+    private static String sMin, sMax, pMin = "4.0.0", pMax;
     private static FeatureList features;
 
     // ****** Plugin Specific ******
@@ -173,12 +173,8 @@ public class FactionsUUIDCompat implements IMobHuntCompat, IFeatureHolder {
     // ****** Plugin Specific ******
 
     public static boolean isInSafeZoneAndPeaceful(Player player) {
-        FPlayer fplayer = FPlayers.getInstance().getByPlayer(player);
-        Faction faction_home = fplayer.getFaction();
-        FLocation flocation = fplayer.getLastStoodAt();
-        Faction faction_here = Board.getInstance().getFactionAt(flocation);
-        if (faction_here != null && faction_here.isSafeZone() && !faction_here.isPeaceful()) {
-            MessageHelper.debug("player is in a safe zone: %s", faction_home.getDescription());
+        Faction faction_here = Factions.factions().getAt(player.getLocation());
+        if (faction_here.isSafeZone() && !faction_here.isPeaceful()) {
             if (faction_here.isPeaceful()) {
                 MessageHelper.debug("The safe zone is peacefull - no reward.");
                 return true;
@@ -189,10 +185,8 @@ public class FactionsUUIDCompat implements IMobHuntCompat, IFeatureHolder {
     }
 
     public static boolean isInWilderness(Player player) {
-        FPlayer fplayer = FPlayers.getInstance().getByPlayer(player);
-        FLocation flocation = fplayer.getLastStoodAt();
-        Faction faction_here = Board.getInstance().getFactionAt(flocation);
-        if (faction_here != null && faction_here.isWilderness()) {
+        Faction faction_here = Factions.factions().getAt(player.getLocation());
+        if (faction_here.isWilderness()) {
             MessageHelper.debug("%s is in Wilderness", player.getName());
             return true;
         } else
@@ -200,10 +194,8 @@ public class FactionsUUIDCompat implements IMobHuntCompat, IFeatureHolder {
     }
 
     public static boolean isInWarZone(Player player) {
-        FPlayer fplayer = FPlayers.getInstance().getByPlayer(player);
-        FLocation flocation = fplayer.getLastStoodAt();
-        Faction faction_here = Board.getInstance().getFactionAt(flocation);
-        if (faction_here != null && faction_here.isWarZone()) {
+        Faction faction_here = Factions.factions().getAt(player.getLocation());
+        if (faction_here.isWarZone()) {
             MessageHelper.debug("%s is in a War zone", player.getName());
             return true;
         } else
@@ -211,15 +203,17 @@ public class FactionsUUIDCompat implements IMobHuntCompat, IFeatureHolder {
     }
 
     public static boolean isInHomeZoneAndPeaceful(Player player) {
-        FPlayer fplayer = FPlayers.getInstance().getByPlayer(player);
-        Faction faction_home = fplayer.getFaction();
-        FLocation flocation = fplayer.getLastStoodAt();
-        Faction faction_here = Board.getInstance().getFactionAt(flocation);
-        if (faction_here != null && faction_here.equals(faction_home)) {
-            MessageHelper.debug("player is in home zone: %s (peaceful=%s, normal=%s) ",
-                    faction_home.getDescription(), faction_here.isPeaceful(), faction_here.isNormal());
+        FPlayer fplayer = FPlayers.fPlayers().get(player.getUniqueId());
+        Location fPlayerHomeLoc = fplayer.faction().home();
+
+        if (fPlayerHomeLoc == null) return false;
+
+        Faction faction_home = Factions.factions().getAt(fPlayerHomeLoc);
+        Faction faction_here = Factions.factions().getAt(player.getLocation());
+
+        if (faction_here.equals(faction_home)) {
             if (faction_here.isPeaceful()) {
-                MessageHelper.debug("The home zone is peacefull - no reward.");
+                MessageHelper.debug("%s is in a home zone that is peaceful - no reward.", player.getName());
                 return true;
             }
             return false;
