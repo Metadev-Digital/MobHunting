@@ -6,7 +6,7 @@
 
     <groupId>metadev.digital</groupId>
     <artifactId>MetaMobHunting</artifactId>
-    <version>10.0.1</version>
+    <version>10.1.0</version>
     <name>MobHunting</name>
     <url>https://github.com/Metadev-Digital/MobHunting</url>
     <description>MobHunting adds a new level of fun to hunting monsters. Now you can get money from kills, get bonuses for skilled and creative kills, and get special achievements!</description>
@@ -180,7 +180,7 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.21.8-R0.1-SNAPSHOT</version>
+            <version>1.21.10-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
 
@@ -188,9 +188,9 @@
         <dependency>
             <groupId>metadev.digital</groupId>
             <artifactId>MetaCustomItemsLib</artifactId>
-            <version>3.0.0</version>
+            <version>3.1.0</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/MetaCustomItemsLib-3.0.0.jar</systemPath>
+            <systemPath>${basedir}/lib/MetaCustomItemsLib-3.1.0.jar</systemPath>
         </dependency>
 
         <!-- Meta BagOfGold -->
@@ -199,7 +199,7 @@
             <artifactId>MetaBagOfGold</artifactId>
             <version>4.5.11-SNAPSHOT</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/MetaBagOfGold-4.5.11-SNAPSHOT.jar</systemPath>
+            <systemPath>${basedir}/lib/MetaBagOfGold-4.5.12-SNAPSHOT.jar</systemPath>
             <exclusions>
                 <exclusion>
                     <groupId>*</groupId>
@@ -296,9 +296,9 @@
         <dependency>
             <groupId>me.libraryaddict.disguise.LibsDisguises</groupId>
             <artifactId>LibsDisguises</artifactId>
-            <version>11.0.7</version>
+            <version>11.0.9</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/LibsDisguises-11.0.7.jar</systemPath>
+            <systemPath>${basedir}/lib/LibsDisguises-11.0.9.jar</systemPath>
         </dependency>
 
         <!-- VanishNoPacket -->
@@ -314,7 +314,7 @@
         <dependency>
             <groupId>com.gmail.nossr50.mcMMO</groupId>
             <artifactId>mcMMO</artifactId>
-            <version>2.2.041</version>
+            <version>2.2.043</version>
             <scope>provided</scope>
             <optional>true</optional>
         </dependency>
@@ -350,7 +350,7 @@
         <dependency>
             <groupId>com.magmaguy</groupId>
             <artifactId>EliteMobs</artifactId>
-            <version>9.5.3</version>
+            <version>9.5.6</version>
             <scope>system</scope>
             <systemPath>${basedir}/lib/EliteMobs.jar</systemPath>
         </dependency>
@@ -377,7 +377,7 @@
         <dependency>
             <groupId>io.lumine</groupId>
             <artifactId>Mythic-Dist</artifactId>
-            <version>5.9.5</version>
+            <version>5.10.0</version>
             <scope>provided</scope>
         </dependency>
 
@@ -402,18 +402,19 @@
         <!-- Factions UUID https://factions.support/  https://www.spigotmc.org/resources/factionsuuid.1035/ -->
         <dependency>
             <groupId>dev.kitteh</groupId>
-            <artifactId>factionsuuid</artifactId>
-            <scope>provided</scope>
-            <version>0.7.0</version>
+            <artifactId>factions</artifactId>
+            <version>4.2.4</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/factionsuuid.jar</systemPath>
         </dependency>
 
         <!-- Residence -->
         <dependency>
             <groupId>com.bekvon.bukkit.residence.ResidenceCommandListener</groupId>
             <artifactId>Residence</artifactId>
-            <version>5.1.7.7</version>
+            <version>6.0.0.1</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/Residence5.1.7.7.jar</systemPath>
+            <systemPath>${basedir}/lib/Residence6.0.0.1.jar</systemPath>
         </dependency>
 
         <!-- Towny -->
@@ -471,23 +472,23 @@
         <dependency>
             <groupId>com.Zrips</groupId>
             <artifactId>CMI</artifactId>
-            <version>9.8.0.5</version>
+            <version>9.8.1.5</version>
             <scope>system</scope>
-            <systemPath>${basedir}\lib\CMI-9.8.0.5.jar</systemPath>
+            <systemPath>${basedir}\lib\CMI-9.8.1.5.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>net.Zrips</groupId>
             <artifactId>CMILib</artifactId>
-            <version>1.5.6.3</version>
+            <version>1.5.6.7</version>
             <scope>system</scope>
-            <systemPath>${basedir}\lib\CMILib1.5.6.3.jar</systemPath>
+            <systemPath>${basedir}\lib\CMILib1.5.6.7.jar</systemPath>
         </dependency>
 
         <!-- Google GSON -->
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
-            <version>2.13.1</version>
+            <version>2.13.2</version>
         </dependency>
 
         <!-- Mysql -->
@@ -507,7 +508,7 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>33.4.8-jre</version>
+            <version>33.5.0-jre</version>
         </dependency>
     </dependencies>
 </project>
