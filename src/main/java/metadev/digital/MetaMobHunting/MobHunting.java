@@ -206,25 +206,6 @@ public class MobHunting extends JavaPlugin {
 		}
 		mConfig.saveConfig();
 
-		if (isbStatsEnabled())
-			MessageHelper.debug("bStat is enabled");
-		else {
-			MessageHelper.warning("=====================WARNING=============================");
-			MessageHelper.warning("The statistics collection is disabled. As developer I need the");
-			MessageHelper.warning("statistics from bStats.org. The statistics is 100% anonymous.");
-			MessageHelper.warning("https://bstats.org/plugin/bukkit/MobHunting");
-			MessageHelper.warning("Please enable this in /plugins/bStats/config.yml and get rid of this");
-			MessageHelper.warning("message. Loading will continue in 15 sec.");
-			MessageHelper.warning("=========================================================");
-			long now = System.currentTimeMillis();
-			while (System.currentTimeMillis() < now + 15000L) {
-				try {
-					Thread.sleep(500);
-				} catch (InterruptedException e) {
-				}
-			}
-		}
-
 		mCompatibilityManager = new CompatibilityManager(this);
 
 		// Handle compatibility stuff
@@ -350,7 +331,7 @@ public class MobHunting extends JavaPlugin {
 				mAdvancementManager.getAdvancementsFromAchivements();
 		}
 
-		if (!Server.isGlowstoneServer() && mConfig.bStatsEnabled) {
+		if (!Server.isGlowstoneServer() && mConfig.bStatsEnabled && isbStatsEnabled()) {
 			mMetricsManager = new MetricsManager(this);
 			mMetricsManager.startBStatsMetrics();
 		}
