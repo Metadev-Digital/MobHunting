@@ -346,7 +346,7 @@ public class MobHunting extends JavaPlugin {
 				mAdvancementManager.getAdvancementsFromAchivements();
 		}
 
-		if (!Server.isGlowstoneServer()) {
+		if (!Server.isGlowstoneServer() && mConfig.bStatsEnabled) {
 			mMetricsManager = new MetricsManager(this);
 			mMetricsManager.startBStatsMetrics();
 		}
