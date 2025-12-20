@@ -145,6 +145,9 @@ public class MobHunting extends JavaPlugin {
 
     @Override
 	public void onLoad() {
+        instance = this;
+        mMessages = new Messages(this);
+
 		// Verify user is not running old Rocologo version and Meta version
 		if (Bukkit.getPluginManager().getPlugin("MobHunting") != null) {
 			throw new RuntimeException(Prefixes.PREFIX + "Detected two versions of MobHunting running. Please remove the MobHunting jar if you wish to use MetaMobHunting.");
@@ -166,45 +169,41 @@ public class MobHunting extends JavaPlugin {
 			}
 		}
 
-		Plugin wg = Bukkit.getPluginManager().getPlugin("WorldGuard");
-		if(wg != null) {
+        int config_version = ConfigManager.getConfigVersion(mFile);
+        MessageHelper.notice("Your config version is " + config_version);
+        switch (config_version) {
+            case 0: // 0 was the old version number before MobHunting V5.0.0
+            case -2:
+                MessageHelper.warning("Defect config.yml file. Deleted.");
+            case -1:
+                mConfig = new ConfigManager(this, mFile);
+                if (!mConfig.loadConfig())
+                    MessageHelper.warning("Error could not load config.yml");
+                MessageHelper.warning("Creating new config.yml, version=" + mConfig.configVersion);
+                break;
+            default:
+                mConfig = new ConfigManager(this, mFile);
+                if (mConfig.loadConfig()) {
+                    MessageHelper.notice("Existing config.yml loaded.");
+                    if (mConfig.backup) {
+                        mBackup = new BackupManager(this);
+                        mBackup.backupConfig(mFile);
+                    }
+                } else
+                    throw new RuntimeException(getMessages().getString("mobhunting.config.fail"));
+                break;
+        }
+        mConfig.saveConfig();
+
+		if(mConfig.enableIntegrationWorldGuard && Bukkit.getPluginManager().getPlugin("WorldGuard") != null) {
 			WorldGuardCompat.registerFlag();
 		}
-
-		instance = this;
-		mMessages = new Messages(this);
 	}
 
 	@Override
 	public void onEnable() {
 
 		disabling = false;
-
-		int config_version = ConfigManager.getConfigVersion(mFile);
-        MessageHelper.notice("Your config version is " + config_version);
-		switch (config_version) {
-		case 0: // 0 was the old version number before MobHunting V5.0.0
-		case -2:
-			MessageHelper.warning("Defect config.yml file. Deleted.");
-		case -1:
-			mConfig = new ConfigManager(this, mFile);
-			if (!mConfig.loadConfig())
-				MessageHelper.warning("Error could not load config.yml");
-            MessageHelper.warning("Creating new config.yml, version=" + mConfig.configVersion);
-			break;
-		default:
-			mConfig = new ConfigManager(this, mFile);
-			if (mConfig.loadConfig()) {
-				MessageHelper.notice("Existing config.yml loaded.");
-				if (mConfig.backup) {
-                    mBackup = new BackupManager(this);
-                    mBackup.backupConfig(mFile);
-                }
-			} else
-				throw new RuntimeException(getMessages().getString("mobhunting.config.fail"));
-			break;
-		}
-		mConfig.saveConfig();
 
 		mCompatibilityManager = new CompatibilityManager(this);
 
