@@ -6,6 +6,7 @@ import java.util.Random;
 import metadev.digital.MetaMobHunting.Messages.MessageHelper;
 import metadev.digital.MetaMobHunting.Messages.Messages;
 import metadev.digital.MetaMobHunting.Messages.constants.Prefixes;
+import metadev.digital.MetaMobHunting.config.BackupManager;
 import metadev.digital.metacustomitemslib.compatibility.enums.SupportedPluginEntities;
 import metadev.digital.MetaMobHunting.compatibility.addons.BagOfGoldCompat;
 import metadev.digital.MetaMobHunting.compatibility.addons.BattleArenaCompat;
@@ -95,6 +96,7 @@ public class MobHunting extends JavaPlugin {
 
 	private Messages mMessages;
 	private ConfigManager mConfig;
+    private BackupManager mBackup;
 	private EconomyManager mEconomyManager;
 	private RewardManager mRewardManager;
 	private MobHuntingManager mMobHuntingManager;
@@ -194,8 +196,10 @@ public class MobHunting extends JavaPlugin {
 			mConfig = new ConfigManager(this, mFile);
 			if (mConfig.loadConfig()) {
 				MessageHelper.notice("Existing config.yml loaded.");
-				if (mConfig.backup)
-					mConfig.backupConfig(mFile);
+				if (mConfig.backup) {
+                    mBackup = new BackupManager(this);
+                    mBackup.backupConfig(mFile);
+                }
 			} else
 				throw new RuntimeException(getMessages().getString("mobhunting.config.fail"));
 			break;

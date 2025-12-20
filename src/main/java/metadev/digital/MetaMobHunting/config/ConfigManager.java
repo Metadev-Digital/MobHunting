@@ -5063,6 +5063,12 @@ public class ConfigManager extends AutoConfig {
 	@ConfigField(name = "backup", category = "general", comment = "Backup config on each server start / reload")
 	public boolean backup = true;
 
+    @ConfigField(name = "backup_count", category = "general", comment = "Number of backups to store before condensing them into an archive. Number is clamped to 1-1000." +
+            " You cannot disable backups from here, set backup to false as a 0 here will be ignored and treated as a 1 if backups are still enabled. Once a threshold is met, these are zipped into an archive" +
+            " and the count begins again. There will only be one archive and it will be replaced upon reaching the threshold again. i.e. Limit of 30, once hitting 30 it will condense it to an archive and start 1-30'" +
+            " again. After hitting 30 a second time that archive will be deleted, and a new one will be generated containing the most recent group of configs.")
+    public int backup_count = 30;
+
 	@ConfigField(name = "newplayer_learning_mode", category = "general", comment = "When a new playerjoins the server he will by default start"
 			+ "\nin 'LEARNING MODE' and get extra information about when he get rewards and not,"
 			+ "\nwhen killing Mobs. The player can disable this InGame by using the command '/mobhunt learn'")
@@ -5118,26 +5124,6 @@ public class ConfigManager extends AutoConfig {
 			}
 		}
 		return result;
-	}
-
-	public void backupConfig(File mFile) {
-		File backupFile = new File(mFile.toString());
-		int count = 0;
-		while (backupFile.exists() && count++ < 1000) {
-
-			backupFile = new File(plugin.getDataFolder().getPath() + "/backup/" + mFile.getName() + ".bak" + count);
-		}
-		if (mFile.exists())
-			try {
-				if (!backupFile.exists())
-					backupFile.mkdirs();
-				Files.copy(mFile.toPath(), backupFile.toPath(), StandardCopyOption.COPY_ATTRIBUTES,
-						StandardCopyOption.REPLACE_EXISTING);
-                MessageHelper.notice("Config.yml was backed up to " + backupFile.getPath());
-			} catch (IOException e1) {
-                MessageHelper.error("Could not backup config.yml file to " +plugin.getDataFolder().getPath() + "backup/config.yml. Delete some old backups");
-				e1.printStackTrace();
-			}
 	}
 
 	public static int getConfigVersion(File file) {
