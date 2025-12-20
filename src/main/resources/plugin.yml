@@ -1,6 +1,6 @@
 name: MetaMobHunting
 main: metadev.digital.MetaMobHunting.MobHunting
-version: 10.1.0
+version: 10.1.5
 description: MetaMobHunting adds a new level of fun to hunting monsters. Now you can
   get money from kills, get bonuses for skilled and creative kills, and get
   special achievements.
@@ -28,6 +28,7 @@ softdepend:
   - MyPet
   - MysteriousHalloween
   - MythicMobs
+  - NoteBlockAPI
   - PlaceholderAPI
   - ProtocolLib
   - PVPArena
