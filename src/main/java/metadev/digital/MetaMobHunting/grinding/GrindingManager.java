@@ -79,7 +79,7 @@ public class GrindingManager implements Listener {
 		long purgeEveryTicks = 20L * Math.max(30, Math.min(120, (int) (windowSec / 2)));
 		Bukkit.getScheduler().runTaskTimer(instance, this::purgeOldKills, purgeEveryTicks, purgeEveryTicks);
 
-        detectionWorker.startDebugGauge(200L); // ~10s at 20 tps
+        // detectionWorker.startDebugGauge(200L); // ~10s at 20 tps
 
 	}
 
