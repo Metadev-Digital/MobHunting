@@ -1,8 +1,6 @@
 package metadev.digital.MetaMobHunting.config;
 
 import metadev.digital.MetaMobHunting.Messages.MessageHelper;
-import metadev.digital.MetaMobHunting.MobHunting;
-import org.bukkit.Bukkit;
 
 import java.io.File;
 import java.io.IOException;

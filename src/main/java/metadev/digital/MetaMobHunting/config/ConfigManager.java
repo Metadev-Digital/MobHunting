@@ -1,9 +1,6 @@
 package metadev.digital.MetaMobHunting.config;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -48,7 +45,10 @@ public class ConfigManager extends AutoConfig {
 		setCategoryComment("updates", "########################################################################"
 				+ "\nUpdate settings" + "\n########################################################################");
 
-		setCategoryComment("example", "########################################################################"
+        setCategoryComment("metrics", "########################################################################"
+                + "\nbStats Metrics settings" + "\n########################################################################");
+
+        setCategoryComment("example", "########################################################################"
 				+ "\nExample of a mob configuration of rewards for killing a mob."
 				+ "\n########################################################################"
 				+ "\nHere is where you set the base prize in $ for killing a mob of each type"
@@ -100,6 +100,7 @@ public class ConfigManager extends AutoConfig {
 		setCategoryComment("mobs.husk", "### Husk settings ###");
 		setCategoryComment("mobs.killer_rabbit", "### Killer Rabbit settings ###");
 		setCategoryComment("mobs.magma_cube", "### Magma Cube settings ###");
+        setCategoryComment("mobs.parched", "### Parched settings ###");
 		setCategoryComment("mobs.phantom", "### Phantom settings ###");
 		setCategoryComment("mobs.piglin", "### Piglin settings ###");
 		setCategoryComment("mobs.pillager", "### Pillager settings ###");
@@ -114,6 +115,7 @@ public class ConfigManager extends AutoConfig {
 		setCategoryComment("mobs.stray", "### Stray settings ###");
 		setCategoryComment("mobs.zoglin", "### Zoglin settings ###");
 		setCategoryComment("mobs.zombie", "### Zombie settings ###");
+        setCategoryComment("mobs.zombienautilus", "### Zombie Nautilus settings ###");
 		setCategoryComment("mobs.zombie_pigman", "### Zombie Pigman settings ###");
 		setCategoryComment("mobs.vex", "### Vex settings ###");
 		setCategoryComment("mobs.vindicator", "### Vindicator settings ###");
@@ -182,6 +184,7 @@ public class ConfigManager extends AutoConfig {
 		setCategoryComment("passive.bat", "### Bat settings ###");
 		setCategoryComment("passive.bee", "### Bee settings ###");
 		setCategoryComment("passive.camel", "### Camel settings ###");
+        setCategoryComment("passive.camelhusk", "### Camel Husk settings ###");
 		setCategoryComment("passive.cat", "### Cat settings ###");
 		setCategoryComment("passive.chicken", "### Chicken settings ###");
 		setCategoryComment("passive.cow", "### Cow settings ###");
@@ -194,6 +197,7 @@ public class ConfigManager extends AutoConfig {
 		setCategoryComment("passive.llama", "### Llama settings ###");
 		setCategoryComment("passive.mule", "### Mule settings ###");
 		setCategoryComment("passive.mushroom_cow", "### Mushroom Cow settings ###");
+        setCategoryComment("passive.nautilus", "### Nautilus settings ###");
 		setCategoryComment("passive.ocelot", "### Ocelot settings ###");
 		setCategoryComment("passive.panda", "### Panda settings ###");
 		setCategoryComment("passive.parrot", "### Parrot settings ###");
@@ -1179,6 +1183,32 @@ public class ConfigManager extends AutoConfig {
 	@ConfigField(name = "magma_cube.head.message", category = "mobs")
 	public String magmaCubeHeadMessage = "§aThe §7{killed} §adropped a skull on the ground";
 
+    // =====Parched============================================
+    @ConfigField(name = "parched.enabled", category = "mobs")
+    public boolean parchedEnabled = true;
+    @ConfigField(name = "parched.message", category = "mobs")
+    public String parchedMessage = "You killed a §7{killed}";
+    @ConfigField(name = "parched.money.amount", category = "mobs")
+    public String parchedMoney = "5:10";
+    @ConfigField(name = "parched.money.chance", category = "mobs")
+    public double parchedMoneyChance = 1;
+    @ConfigField(name = "parched.commands", category = "mobs")
+    public List<HashMap<String, String>> parchedCommands = new ArrayList<HashMap<String, String>>();
+    {
+        HashMap<String, String> values1 = new HashMap<String, String>();
+        values1.put("cmd", "give {player} iron_ingot 1");
+        values1.put("chance", "0.33");
+        parchedCommands.add(values1);
+    }
+    @ConfigField(name = "parched.head.drophead", category = "mobs")
+    public boolean parchedHeadDropHead = true;
+    @ConfigField(name = "parched.head.value", category = "mobs")
+    public String parchedHeadPrize = "0";
+    @ConfigField(name = "parched.head.chance", category = "mobs")
+    public double parchedHeadDropChance = 0.33;
+    @ConfigField(name = "parched.head.message", category = "mobs")
+    public String parchedHeadMessage = "§aThe §7{killed} §adropped a skull on the ground";
+
 	// =====Phantom============================================
 	@ConfigField(name = "phantom.enabled", category = "mobs")
 	public boolean phantomEnabled = true;
@@ -1596,6 +1626,32 @@ public class ConfigManager extends AutoConfig {
 	public double zombieHeadDropChance = 0.005;
 	@ConfigField(name = "zombie.head.message", category = "mobs")
 	public String zombieHeadMessage = "§aThe §7{killed} §adropped a skull on the ground";
+
+    // =====Zombie Nautilus============================================
+    @ConfigField(name = "zombienautilus.enabled", category = "mobs")
+    public boolean zombieNautilusEnabled = true;
+    @ConfigField(name = "zombienautilus.message", category = "mobs")
+    public String zombieNautilusMessage = "You killed a §7{killed}";
+    @ConfigField(name = "zombienautilus.money.amount", category = "mobs")
+    public String zombieNautilusMoney = "4:8";
+    @ConfigField(name = "zombienautilus.money.chance", category = "mobs")
+    public double zombieNautilusMoneyChance = 1;
+    @ConfigField(name = "zombienautilus.commands", category = "mobs")
+    public List<HashMap<String, String>> zombieNautilusCommands = new ArrayList<HashMap<String, String>>();
+    {
+        HashMap<String, String> values1 = new HashMap<String, String>();
+        values1.put("cmd", "give {player} iron_ingot 1");
+        values1.put("chance", "0.10");
+        zombieNautilusCommands.add(values1);
+    }
+    @ConfigField(name = "zombienautilus.head.drophead", category = "mobs")
+    public boolean zombieNautilusHeadDropHead = true;
+    @ConfigField(name = "zombienautilus.head.value", category = "mobs")
+    public String zombieNautilusHeadPrize = "0";
+    @ConfigField(name = "zombienautilus.head.chance", category = "mobs")
+    public double zombieNautilusHeadDropChance = 0.10;
+    @ConfigField(name = "zombienautilus.head.message", category = "mobs")
+    public String zombieNautilusHeadMessage = "§aThe §7{killed} §adropped a skull on the ground";
 
 	// =====Zombie Pigman============================================
 	@ConfigField(name = "zombie_pigman.enabled", category = "mobs")
@@ -2468,9 +2524,9 @@ public class ConfigManager extends AutoConfig {
 	public String beeHeadMessage = "§aThe §7{killed} §adropped a skull on the ground";
 
 	// =====Camel============================================
-	@ConfigField(name = "cat.enabled", category = "passive")
+	@ConfigField(name = "camel.enabled", category = "passive")
 	public boolean camelEnabled = true;
-	@ConfigField(name = "cat.message", category = "passive")
+	@ConfigField(name = "camel.message", category = "passive")
 	public String camelMessage = "You killed a §7{killed}";
 	@ConfigField(name = "camel.money.amount", category = "passive")
 	public String camelMoney = "0";
@@ -2492,6 +2548,32 @@ public class ConfigManager extends AutoConfig {
 	public double camelHeadDropChance = 0.05;
 	@ConfigField(name = "camel.head.message", category = "passive")
 	public String camelHeadMessage = "§aThe §7{killed} §adropped a skull on the ground";
+
+    // =====Camel Husk============================================
+    @ConfigField(name = "camelhusk.enabled", category = "passive")
+    public boolean camelHuskEnabled = true;
+    @ConfigField(name = "camelhusk.message", category = "passive")
+    public String camelHuskMessage = "You killed a §7{killed}";
+    @ConfigField(name = "camelhusk.money.amount", category = "passive")
+    public String camelHuskMoney = "0";
+    @ConfigField(name = "camelhusk.money.chance", category = "passive")
+    public double camelHuskMoneyChance = 0.1;
+    @ConfigField(name = "camelhusk.commands", category = "passive")
+    public List<HashMap<String, String>> camelHuskCommands = new ArrayList<HashMap<String, String>>();
+    {
+        HashMap<String, String> values1 = new HashMap<String, String>();
+        values1.put("cmd", "give {player} water_bucket 1");
+        values1.put("chance", "0.05");
+        camelHuskCommands.add(values1);
+    }
+    @ConfigField(name = "camelhusk.head.drophead", category = "passive")
+    public boolean camelHuskHeadDropHead = true;
+    @ConfigField(name = "camelhusk.head.value", category = "passive")
+    public String camelHuskHeadPrize = "0";
+    @ConfigField(name = "camelhusk.head.chance", category = "passive")
+    public double camelHuskHeadDropChance = 0.05;
+    @ConfigField(name = "camelhusk.head.message", category = "passive")
+    public String camelHuskHeadMessage = "§aThe §7{killed} §adropped a skull on the ground";
 
 	// =====Cat============================================
 	@ConfigField(name = "cat.enabled", category = "passive")
@@ -2805,6 +2887,32 @@ public class ConfigManager extends AutoConfig {
 	public double mushroomCowHeadDropChance = 0.05;
 	@ConfigField(name = "mushroom_cow.head.message", category = "passive")
 	public String mushroomCowHeadMessage = "§aThe §7{killed} §adropped a skull on the ground";
+
+    // =====Nautilus============================================
+    @ConfigField(name = "nautilus.enabled", category = "passive")
+    public boolean nautilusEnabled = true;
+    @ConfigField(name = "nautilus.message", category = "passive")
+    public String nautilusMessage = "You killed a §7{killed}";
+    @ConfigField(name = "nautilus.money.amount", category = "passive")
+    public String nautilusMoney = "0";
+    @ConfigField(name = "nautilus.money.chance", category = "passive")
+    public double nautilusMoneyChance = 0.1;
+    @ConfigField(name = "nautilus.commands", category = "passive")
+    public List<HashMap<String, String>> nautilusCommands = new ArrayList<HashMap<String, String>>();
+    {
+        HashMap<String, String> values1 = new HashMap<String, String>();
+        values1.put("cmd", "give {player} water_bucket 1");
+        values1.put("chance", "0.05");
+        nautilusCommands.add(values1);
+    }
+    @ConfigField(name = "nautilus.head.drophead", category = "passive")
+    public boolean nautilusHeadDropHead = true;
+    @ConfigField(name = "nautilus.head.value", category = "passive")
+    public String nautilusHeadPrize = "0";
+    @ConfigField(name = "nautilus.head.chance", category = "passive")
+    public double nautilusHeadDropChance = 0.05;
+    @ConfigField(name = "nautilus.head.message", category = "passive")
+    public String nautilusHeadMessage = "§aThe §7{killed} §adropped a skull on the ground";
 
 	// =====Ocelot============================================
 	@ConfigField(name = "ocelot.enabled", category = "passive")
@@ -3572,6 +3680,12 @@ public class ConfigManager extends AutoConfig {
 	@ConfigField(name = "butcher_level1", category = "achievements.hunter.mob_level")
 	public int butcherLevel1 = 100;
 
+    @ConfigField(name = "camel_level1", category = "achievements.hunter.mob_level")
+    public int camelLevel1 = 100;
+
+    @ConfigField(name = "camelhusk_level1", category = "achievements.hunter.mob_level")
+    public int camelHuskLevel1 = 100;
+
 	@ConfigField(name = "cat_level1", category = "achievements.hunter.mob_level")
 	public int catLevel1 = 100;
 
@@ -3698,6 +3812,9 @@ public class ConfigManager extends AutoConfig {
 	@ConfigField(name = "mushroom_cow_level1", category = "achievements.hunter.mob_level")
 	public int mushroomCowLevel1 = 100;
 
+    @ConfigField(name = "nautilus_level1", category = "achievements.hunter.mob_level")
+    public int nautilusLevel1 = 100;
+
 	@ConfigField(name = "nitwit_level1", category = "achievements.hunter.mob_level")
 	public int nitwitLevel1 = 100;
 
@@ -3709,6 +3826,9 @@ public class ConfigManager extends AutoConfig {
 
 	@ConfigField(name = "parrot_level1", category = "achievements.hunter.mob_level")
 	public int parrotLevel1 = 100;
+
+    @ConfigField(name = "parched_level1", category = "achievements.hunter.mob_level")
+    public int parchedLevel1 = 100;
 
 	@ConfigField(name = "phantom_level1", category = "achievements.hunter.mob_level")
 	public int phantomLevel1 = 100;
@@ -3835,6 +3955,9 @@ public class ConfigManager extends AutoConfig {
 
 	@ConfigField(name = "zombiehorse_level1", category = "achievements.hunter.mob_level")
 	public int zombieHorseLevel1 = 100;
+
+    @ConfigField(name = "zombienautilus_level1", category = "achievements.hunter.mob_level")
+    public int zombieNautilusLevel1 = 100;
 
 	@ConfigField(name = "zombie_pigman_level1", category = "achievements.hunter.mob_level")
 	public int zombiePigmanLevel1 = 100;
@@ -4312,6 +4435,12 @@ public class ConfigManager extends AutoConfig {
 	public double camelMcMMOSkillRewardChance = 0.025;
 	// Passive mob, risk free
 
+    @ConfigField(name = "skillreward_amount", category = "plugins.mcmmo.mobs.camelhusk")
+    public String camelHuskMcMMOSkillRewardAmount = "1";
+    @ConfigField(name = "skillreward_chance", category = "plugins.mcmmo.mobs.camelhusk")
+    public double camelHuskMcMMOSkillRewardChance = 0.025;
+    // Passive mob, risk free
+
 	@ConfigField(name = "skillreward_amount", category = "plugins.mcmmo.mobs.cartographer")
 	public String cartographerMcMMOSkillRewardAmount = "1";
 	@ConfigField(name = "skillreward_chance", category = "plugins.mcmmo.mobs.cartographer")
@@ -4555,9 +4684,15 @@ public class ConfigManager extends AutoConfig {
 
 	@ConfigField(name = "skillreward_amount", category = "plugins.mcmmo.mobs.mushroom_cow")
 	public String mushroomCowMcMMOSkillRewardAmount = "1";
-	@ConfigField(name = "skillreward_chance", category = "plugins.mcmmo.mobs.mushroom_cow.")
+	@ConfigField(name = "skillreward_chance", category = "plugins.mcmmo.mobs.mushroom_cow")
 	public double mushroomCowMcMMOSkillRewardChance = 0.025;
 	// Passive mob, risk free
+
+    @ConfigField(name = "skillreward_amount", category = "plugins.mcmmo.mobs.nautilus")
+    public String nautilusMcMMOSkillRewardAmount = "1";
+    @ConfigField(name = "skillreward_chance", category = "plugins.mcmmo.mobs.nautilus")
+    public double nautilusMcMMOSkillRewardChance = 0.025;
+    // Passive mob, risk free
 
 	@ConfigField(name = "skillreward_amount", category = "plugins.mcmmo.mobs.nitwit")
 	public String nitwitMcMMOSkillRewardAmount = "1";
@@ -4582,6 +4717,12 @@ public class ConfigManager extends AutoConfig {
 	@ConfigField(name = "skillreward_chance", category = "plugins.mcmmo.mobs.panda")
 	public double pandaMcMMOSkillRewardChance = 0.025;
 	// Passive mob, risk free
+
+    @ConfigField(name = "skillreward_amount", category = "plugins.mcmmo.mobs.parched")
+    public String parchedMcMMOSkillRewardAmount = "1";
+    @ConfigField(name = "skillreward_chance", category = "plugins.mcmmo.mobs.parched")
+    public double parchedMcMMOSkillRewardChance = 0.050;
+    // Hostile mob, low risc
 
 	@ConfigField(name = "skillreward_amount", category = "plugins.mcmmo.mobs.phantom")
 	public String phantomMcMMOSkillRewardAmount = "1";
@@ -4841,6 +4982,12 @@ public class ConfigManager extends AutoConfig {
 	public double zombieHorseMcMMOSkillRewardChance = 0.025;
 	// Passive mob, risk free
 
+    @ConfigField(name = "skillreward_amount", category = "plugins.mcmmo.mobs.zombienautilus")
+    public String zombieNautilusMcMMOSkillRewardAmount = "1";
+    @ConfigField(name = "skillreward_chance", category = "plugins.mcmmo.mobs.zombienautilus")
+    public double zombieNautilusMcMMOSkillRewardChance = 0.05;
+    // Hostile mob, normal
+
 	@ConfigField(name = "skillreward_amount", category = "plugins.mcmmo.mobs.zombie_pigman")
 	public String zombiePigManMcMMOSkillRewardAmount = "1";
 	@ConfigField(name = "skillreward_chance", category = "plugins.mcmmo.mobs.zombie_pigman")
@@ -5010,6 +5157,15 @@ public class ConfigManager extends AutoConfig {
 	@ConfigField(name = "update_check", category = "updates", comment = "Check if there is a new version of the plugin available.")
 	public boolean updateCheck = true;
 
+    // #####################################################################################
+    // bStats Metrics Settings
+    // #####################################################################################
+    @ConfigField(name = "bstats_metrics_enabled", category = "metrics", comment = "Toggle whether or not bStats tracking metrics are being gathered. These" +
+            "\nanalytics are very beneficial for including support for new and existing plugin integrations. You are completely within your right to opt out" +
+            "\nof this data gathering. However, I do humbly request that it is either left on or when it is turned off if you could provide any plugin support" +
+            "\nsuggestions / future integration requests / bug reports, etc. as soon and as frequently as humanly possible via the Spigot forums or GitHub issues.")
+    public boolean bStatsEnabled = true;
+
 	// #####################################################################################
 	// Generel settings
 	// #####################################################################################
@@ -5050,6 +5206,12 @@ public class ConfigManager extends AutoConfig {
 
 	@ConfigField(name = "backup", category = "general", comment = "Backup config on each server start / reload")
 	public boolean backup = true;
+
+    @ConfigField(name = "backup_count", category = "general", comment = "Number of backups to store before condensing them into an archive. Number is clamped to 1-1000." +
+            " You cannot disable backups from here, set backup to false as a 0 here will be ignored and treated as a 1 if backups are still enabled. Once a threshold is met, these are zipped into an archive" +
+            " and the count begins again. There will only be one archive and it will be replaced upon reaching the threshold again. i.e. Limit of 30, once hitting 30 it will condense it to an archive and start 1-30'" +
+            " again. After hitting 30 a second time that archive will be deleted, and a new one will be generated containing the most recent group of configs.")
+    public int backup_count = 30;
 
 	@ConfigField(name = "newplayer_learning_mode", category = "general", comment = "When a new playerjoins the server he will by default start"
 			+ "\nin 'LEARNING MODE' and get extra information about when he get rewards and not,"
@@ -5108,26 +5270,6 @@ public class ConfigManager extends AutoConfig {
 		return result;
 	}
 
-	public void backupConfig(File mFile) {
-		File backupFile = new File(mFile.toString());
-		int count = 0;
-		while (backupFile.exists() && count++ < 1000) {
-
-			backupFile = new File(plugin.getDataFolder().getPath() + "/backup/" + mFile.getName() + ".bak" + count);
-		}
-		if (mFile.exists())
-			try {
-				if (!backupFile.exists())
-					backupFile.mkdirs();
-				Files.copy(mFile.toPath(), backupFile.toPath(), StandardCopyOption.COPY_ATTRIBUTES,
-						StandardCopyOption.REPLACE_EXISTING);
-                MessageHelper.notice("Config.yml was backed up to " + backupFile.getPath());
-			} catch (IOException e1) {
-                MessageHelper.error("Could not backup config.yml file to " +plugin.getDataFolder().getPath() + "backup/config.yml. Delete some old backups");
-				e1.printStackTrace();
-			}
-	}
-
 	public static int getConfigVersion(File file) {
 		if (!file.exists())
 			return -1;
@@ -5158,6 +5300,10 @@ public class ConfigManager extends AutoConfig {
 			return butcherLevel1;
 		case TropicalFish:
 			return clownfishLevel1;
+        case Camel:
+            return camelLevel1;
+        case CamelHusk:
+            return camelHuskLevel1;
 		case CaveSpider:
 			return caveSpiderLevel1;
 		case Chicken:
@@ -5214,10 +5360,14 @@ public class ConfigManager extends AutoConfig {
 			return magmaCubeLevel1;
 		case MushroomCow:
 			return mushroomCowLevel1;
+        case Nautilus:
+            return nautilusLevel1;
 		case Nitwit:
 			return nitwitLevel1;
 		case Ocelot:
 			return ocelotLevel1;
+        case Parched:
+            return parchedLevel1;
 		case Parrot:
 			return parrotLevel1;
 		case PassiveRabbit:
@@ -5282,6 +5432,8 @@ public class ConfigManager extends AutoConfig {
 			return zombieLevel1;
 		case ZombieHorse:
 			return zombieHorseLevel1;
+        case ZombieNautilus:
+            return zombieNautilusLevel1;
 		case ZombiePigman:
 			return zombiePigmanLevel1;
 		case ZombieVillager:
@@ -5363,6 +5515,10 @@ public class ConfigManager extends AutoConfig {
 			return getPrice(mob, bonusMobHeadPrize);
 		case Butcher:
 			return getPrice(mob, butcherHeadPrize);
+        case Camel:
+            return getPrice(mob, camelHeadPrize);
+        case CamelHusk:
+            return getPrice(mob, camelHuskHeadPrize);
 		case Cartographer:
 			return getPrice(mob, cartographerHeadPrize);
 		case CaveSpider:
@@ -5421,10 +5577,14 @@ public class ConfigManager extends AutoConfig {
 			return getPrice(mob, muleHeadPrize);
 		case MushroomCow:
 			return getPrice(mob, mushroomCowHeadPrize);
+        case Nautilus:
+            return getPrice(mob, nautilusHeadPrize);
 		case Nitwit:
 			return getPrice(mob, nitwitHeadPrize);
 		case Ocelot:
 			return getPrice(mob, ocelotHeadPrize);
+        case Parched:
+            return getPrice(mob, parchedHeadPrize);
 		case Parrot:
 			return getPrice(mob, parrotHeadPrize);
 		case PassiveRabbit:
@@ -5487,6 +5647,8 @@ public class ConfigManager extends AutoConfig {
 			return getPrice(mob, zombieHeadPrize);
 		case ZombieHorse:
 			return getPrice(mob, zombieHorseHeadPrize);
+        case ZombieNautilus:
+            return getPrice(mob, zombieNautilusHeadPrize);
 		case ZombiePigman:
 			return getPrice(mob, zombiePigmanHeadPrize);
 		case ZombieVillager:

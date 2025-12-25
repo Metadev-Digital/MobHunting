@@ -6,6 +6,7 @@ import java.util.Random;
 import metadev.digital.MetaMobHunting.Messages.MessageHelper;
 import metadev.digital.MetaMobHunting.Messages.Messages;
 import metadev.digital.MetaMobHunting.Messages.constants.Prefixes;
+import metadev.digital.MetaMobHunting.config.BackupManager;
 import metadev.digital.metacustomitemslib.compatibility.enums.SupportedPluginEntities;
 import metadev.digital.MetaMobHunting.compatibility.addons.BagOfGoldCompat;
 import metadev.digital.MetaMobHunting.compatibility.addons.BattleArenaCompat;
@@ -95,6 +96,7 @@ public class MobHunting extends JavaPlugin {
 
 	private Messages mMessages;
 	private ConfigManager mConfig;
+    private BackupManager mBackup;
 	private EconomyManager mEconomyManager;
 	private RewardManager mRewardManager;
 	private MobHuntingManager mMobHuntingManager;
@@ -143,6 +145,9 @@ public class MobHunting extends JavaPlugin {
 
     @Override
 	public void onLoad() {
+        instance = this;
+        mMessages = new Messages(this);
+
 		// Verify user is not running old Rocologo version and Meta version
 		if (Bukkit.getPluginManager().getPlugin("MobHunting") != null) {
 			throw new RuntimeException(Prefixes.PREFIX + "Detected two versions of MobHunting running. Please remove the MobHunting jar if you wish to use MetaMobHunting.");
@@ -164,62 +169,41 @@ public class MobHunting extends JavaPlugin {
 			}
 		}
 
-		Plugin wg = Bukkit.getPluginManager().getPlugin("WorldGuard");
-		if(wg != null) {
+        int config_version = ConfigManager.getConfigVersion(mFile);
+        MessageHelper.notice("Your config version is " + config_version);
+        switch (config_version) {
+            case 0: // 0 was the old version number before MobHunting V5.0.0
+            case -2:
+                MessageHelper.warning("Defect config.yml file. Deleted.");
+            case -1:
+                mConfig = new ConfigManager(this, mFile);
+                if (!mConfig.loadConfig())
+                    MessageHelper.warning("Error could not load config.yml");
+                MessageHelper.warning("Creating new config.yml, version=" + mConfig.configVersion);
+                break;
+            default:
+                mConfig = new ConfigManager(this, mFile);
+                if (mConfig.loadConfig()) {
+                    MessageHelper.notice("Existing config.yml loaded.");
+                    if (mConfig.backup) {
+                        mBackup = new BackupManager(this);
+                        mBackup.backupConfig(mFile);
+                    }
+                } else
+                    throw new RuntimeException(getMessages().getString("mobhunting.config.fail"));
+                break;
+        }
+        mConfig.saveConfig();
+
+		if(mConfig.enableIntegrationWorldGuard && Bukkit.getPluginManager().getPlugin("WorldGuard") != null) {
 			WorldGuardCompat.registerFlag();
 		}
-
-		instance = this;
-		mMessages = new Messages(this);
 	}
 
 	@Override
 	public void onEnable() {
 
 		disabling = false;
-
-		int config_version = ConfigManager.getConfigVersion(mFile);
-        MessageHelper.notice("Your config version is " + config_version);
-		switch (config_version) {
-		case 0: // 0 was the old version number before MobHunting V5.0.0
-		case -2:
-			MessageHelper.warning("Defect config.yml file. Deleted.");
-		case -1:
-			mConfig = new ConfigManager(this, mFile);
-			if (!mConfig.loadConfig())
-				MessageHelper.warning("Error could not load config.yml");
-            MessageHelper.warning("Creating new config.yml, version=" + mConfig.configVersion);
-			break;
-		default:
-			mConfig = new ConfigManager(this, mFile);
-			if (mConfig.loadConfig()) {
-				MessageHelper.notice("Existing config.yml loaded.");
-				if (mConfig.backup)
-					mConfig.backupConfig(mFile);
-			} else
-				throw new RuntimeException(getMessages().getString("mobhunting.config.fail"));
-			break;
-		}
-		mConfig.saveConfig();
-
-		if (isbStatsEnabled())
-			MessageHelper.debug("bStat is enabled");
-		else {
-			MessageHelper.warning("=====================WARNING=============================");
-			MessageHelper.warning("The statistics collection is disabled. As developer I need the");
-			MessageHelper.warning("statistics from bStats.org. The statistics is 100% anonymous.");
-			MessageHelper.warning("https://bstats.org/plugin/bukkit/MobHunting");
-			MessageHelper.warning("Please enable this in /plugins/bStats/config.yml and get rid of this");
-			MessageHelper.warning("message. Loading will continue in 15 sec.");
-			MessageHelper.warning("=========================================================");
-			long now = System.currentTimeMillis();
-			while (System.currentTimeMillis() < now + 15000L) {
-				try {
-					Thread.sleep(500);
-				} catch (InterruptedException e) {
-				}
-			}
-		}
 
 		mCompatibilityManager = new CompatibilityManager(this);
 
@@ -346,7 +330,7 @@ public class MobHunting extends JavaPlugin {
 				mAdvancementManager.getAdvancementsFromAchivements();
 		}
 
-		if (!Server.isGlowstoneServer()) {
+		if (!Server.isGlowstoneServer() && mConfig.bStatsEnabled && isbStatsEnabled()) {
 			mMetricsManager = new MetricsManager(this);
 			mMetricsManager.startBStatsMetrics();
 		}

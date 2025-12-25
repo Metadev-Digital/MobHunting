@@ -630,20 +630,20 @@ public class MobHuntingManager implements Listener {
 
 	long messageLimiter = 0;
 
-	@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = false)
-	private void onMobDeath(EntityDeathEvent event) {
+        @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = false)
+        private void onMobDeath(EntityDeathEvent event) {
 
-		boolean silent = System.currentTimeMillis() < messageLimiter + 60 * 1000;
+            boolean silent = System.currentTimeMillis() < messageLimiter + 60 * 1000;
 
-		LivingEntity killed = event.getEntity();
+            LivingEntity killed = event.getEntity();
 
-		Player killer = event.getEntity().getKiller();
+            Player killer = event.getEntity().getKiller();
 
-		ExtendedMob mob = plugin.getExtendedMobManager().getExtendedMobFromEntity(killed);
-		if (mob.getMob_id() == 0) {
-			MessageHelper.debug("MOB_ID=0");
-			return;
-		}
+            ExtendedMob mob = plugin.getExtendedMobManager().getExtendedMobFromEntity(killed);
+            if (mob.getMob_id() == 0) {
+                 MessageHelper.debug("MOB_ID=0");
+                return;
+            }
 
 		// find player from killer or killed
 		Player player = getPlayer(killer, killed);
@@ -655,7 +655,12 @@ public class MobHuntingManager implements Listener {
 
 		}
 
-		plugin.getGrindingManager().registerDeath(killer, killed);
+        // Only track deaths for grinding detection if we will actually evaluate them.
+        if (plugin.getConfigManager().grindingDetectionEnabled
+            && !plugin.getGrindingManager().isGrindingDisabledInWorld(killed.getWorld())
+            && isHuntEnabledInWorld(killed.getWorld())) {
+				plugin.getGrindingManager().registerDeath(killer, killed);
+        }
 
 		// Grinding Farm detections
 		if (plugin.getConfigManager().grindingDetectionEnabled && plugin.getConfigManager().detectFarms

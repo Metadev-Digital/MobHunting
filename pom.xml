@@ -6,7 +6,7 @@
 
     <groupId>metadev.digital</groupId>
     <artifactId>MetaMobHunting</artifactId>
-    <version>10.1.0</version>
+    <version>10.1.5</version>
     <name>MobHunting</name>
     <url>https://github.com/Metadev-Digital/MobHunting</url>
     <description>MobHunting adds a new level of fun to hunting monsters. Now you can get money from kills, get bonuses for skilled and creative kills, and get special achievements!</description>
@@ -180,7 +180,7 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.21.10-R0.1-SNAPSHOT</version>
+            <version>1.21.11-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
 
@@ -188,9 +188,9 @@
         <dependency>
             <groupId>metadev.digital</groupId>
             <artifactId>MetaCustomItemsLib</artifactId>
-            <version>3.1.0</version>
+            <version>3.1.5</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/MetaCustomItemsLib-3.1.0.jar</systemPath>
+            <systemPath>${basedir}/lib/MetaCustomItemsLib-3.1.5.jar</systemPath>
         </dependency>
 
         <!-- Meta BagOfGold -->
@@ -296,9 +296,9 @@
         <dependency>
             <groupId>me.libraryaddict.disguise.LibsDisguises</groupId>
             <artifactId>LibsDisguises</artifactId>
-            <version>11.0.9</version>
+            <version>11.0.13</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/LibsDisguises-11.0.9.jar</systemPath>
+            <systemPath>${basedir}/lib/LibsDisguises-11.0.13.jar</systemPath>
         </dependency>
 
         <!-- VanishNoPacket -->
@@ -314,7 +314,7 @@
         <dependency>
             <groupId>com.gmail.nossr50.mcMMO</groupId>
             <artifactId>mcMMO</artifactId>
-            <version>2.2.043</version>
+            <version>2.2.048</version>
             <scope>provided</scope>
             <optional>true</optional>
         </dependency>
@@ -332,9 +332,9 @@
         <dependency>
             <groupId>io.github.arcaneplugins.levelledmobs</groupId>
             <artifactId>LevelledMobs</artifactId>
-            <version>4.3.2.1 b125</version>
+            <version>4.4.0 b137</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/LevelledMobs-4.3.2.1.b125.jar</systemPath>
+            <systemPath>${basedir}/lib/LevelledMobs-4.4.0.b137.jar</systemPath>
         </dependency>
 
         <!-- StackMob -->
@@ -350,7 +350,7 @@
         <dependency>
             <groupId>com.magmaguy</groupId>
             <artifactId>EliteMobs</artifactId>
-            <version>9.5.6</version>
+            <version>9.6.1</version>
             <scope>system</scope>
             <systemPath>${basedir}/lib/EliteMobs.jar</systemPath>
         </dependency>
@@ -403,7 +403,7 @@
         <dependency>
             <groupId>dev.kitteh</groupId>
             <artifactId>factions</artifactId>
-            <version>4.2.4</version>
+            <version>4.4.1</version>
             <scope>system</scope>
             <systemPath>${basedir}/lib/factionsuuid.jar</systemPath>
         </dependency>
@@ -412,9 +412,9 @@
         <dependency>
             <groupId>com.bekvon.bukkit.residence.ResidenceCommandListener</groupId>
             <artifactId>Residence</artifactId>
-            <version>6.0.0.1</version>
+            <version>6.0.1.2</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/Residence6.0.0.1.jar</systemPath>
+            <systemPath>${basedir}/lib/Residence6.0.1.2.jar</systemPath>
         </dependency>
 
         <!-- Towny -->
@@ -463,25 +463,25 @@
         <dependency>
             <groupId>me.clip</groupId>
             <artifactId>placeholderapi</artifactId>
-            <version>2.11.7-DEV-212</version>
+            <version>2.11.7</version>
             <!--<scope>provided</scope>-->
             <scope>system</scope>
-            <systemPath>${basedir}/lib/PlaceholderAPI-2.11.7-DEV-212.jar</systemPath>
+            <systemPath>${basedir}/lib/PlaceholderAPI-2.11.7.jar</systemPath>
         </dependency>
 
         <dependency>
             <groupId>com.Zrips</groupId>
             <artifactId>CMI</artifactId>
-            <version>9.8.1.5</version>
+            <version>9.8.4.2</version>
             <scope>system</scope>
-            <systemPath>${basedir}\lib\CMI-9.8.1.5.jar</systemPath>
+            <systemPath>${basedir}/lib/CMI-9.8.4.2.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>net.Zrips</groupId>
             <artifactId>CMILib</artifactId>
-            <version>1.5.6.7</version>
+            <version>1.5.8.2</version>
             <scope>system</scope>
-            <systemPath>${basedir}\lib\CMILib1.5.6.7.jar</systemPath>
+            <systemPath>${basedir}/lib/CMILib1.5.8.2.jar</systemPath>
         </dependency>
 
         <!-- Google GSON -->
@@ -495,7 +495,7 @@
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
-            <version>9.4.0</version>
+            <version>9.5.0</version>
             <exclusions>
                 <exclusion>
                     <groupId>com.google.protobuf</groupId>
