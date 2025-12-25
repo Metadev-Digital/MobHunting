@@ -408,7 +408,15 @@ public class RewardManager {
 
 		} else {
 			if (Server.isMC121OrNewer()){
-                if (mob instanceof CopperGolem)
+                if (mob instanceof CamelHusk)
+                    return getPrice(mob,plugin.getConfigManager().camelHuskMoney);
+                else if (mob instanceof Nautilus)
+                    return getPrice(mob,plugin.getConfigManager().nautilusMoney);
+                else if (mob instanceof Parched)
+                    return getPrice(mob,plugin.getConfigManager().parchedMoney);
+                else if (mob instanceof ZombieNautilus)
+                    return getPrice(mob,plugin.getConfigManager().zombieNautilusMoney);
+                else if (mob instanceof CopperGolem)
                     return getPrice(mob,plugin.getConfigManager().coppergolemMoney);
 				else if (mob instanceof Creaking)
 					return getPrice(mob,plugin.getConfigManager().creakingMoney);
@@ -672,12 +680,10 @@ public class RewardManager {
 				return getPrice(mob, plugin.getConfigManager().batMoney);
 			else if (mob instanceof Chicken)
 				return getPrice(mob, plugin.getConfigManager().chickenMoney);
+            else if (mob instanceof MushroomCow)
+                return getPrice(mob, plugin.getConfigManager().mushroomCowMoney);
 			else if (mob instanceof Cow)
-				if (mob instanceof MushroomCow)
-					// MushroomCow is a subclass of Cow
-					return getPrice(mob, plugin.getConfigManager().mushroomCowMoney);
-				else
-					return getPrice(mob, plugin.getConfigManager().cowPrize);
+                return getPrice(mob, plugin.getConfigManager().cowPrize);
 			else if (mob instanceof Horse)
 				return getPrice(mob, plugin.getConfigManager().horseMoney);
 			else if (mob instanceof Ocelot)
@@ -774,7 +780,15 @@ public class RewardManager {
 
 		} else {
 			if (Server.isMC121OrNewer()){
-                if (mob instanceof CopperGolem)
+                if (mob instanceof CamelHusk)
+                    return plugin.getConfigManager().camelHuskCommands;
+                else if (mob instanceof Nautilus)
+                    return plugin.getConfigManager().nautilusCommands;
+                else if (mob instanceof Parched)
+                    return plugin.getConfigManager().parchedCommands;
+                else if (mob instanceof ZombieNautilus)
+                    return plugin.getConfigManager().zombieNautilusCommands;
+                else if (mob instanceof CopperGolem)
                     return plugin.getConfigManager().coppergolemCommands;
                 else if (mob instanceof Creaking)
 					return plugin.getConfigManager().creakingCommands;
@@ -1019,12 +1033,10 @@ public class RewardManager {
 				return plugin.getConfigManager().batCommands;
 			else if (mob instanceof Chicken)
 				return plugin.getConfigManager().chickenCommands;
-
+            else if (mob instanceof MushroomCow)
+                return plugin.getConfigManager().mushroomCowCommands;
 			else if (mob instanceof Cow)
-				if (mob instanceof MushroomCow)
-					return plugin.getConfigManager().mushroomCowCommands;
-				else
-					return plugin.getConfigManager().cowCmdNew;
+                return plugin.getConfigManager().cowCmdNew;
 			else if (mob instanceof Horse)
 				return plugin.getConfigManager().horseCommands;
 			else if (mob instanceof Ocelot)
@@ -1092,7 +1104,15 @@ public class RewardManager {
 
 		} else {
 			if (Server.isMC121OrNewer()){
-                if (mob instanceof CopperGolem)
+                if (mob instanceof CamelHusk)
+                    return plugin.getConfigManager().camelHuskMessage;
+                else if (mob instanceof Nautilus)
+                    return plugin.getConfigManager().nautilusMessage;
+                else if (mob instanceof Parched)
+                    return plugin.getConfigManager().parchedMessage;
+                else if (mob instanceof ZombieNautilus)
+                    return plugin.getConfigManager().zombieNautilusMessage;
+                else if (mob instanceof CopperGolem)
                     return plugin.getConfigManager().coppergolemMessage;
                 else if (mob instanceof Creaking)
 					return plugin.getConfigManager().creakingMessage;
@@ -1335,12 +1355,10 @@ public class RewardManager {
 				return plugin.getConfigManager().batMessage;
 			else if (mob instanceof Chicken)
 				return plugin.getConfigManager().chickenMessage;
+            else if (mob instanceof MushroomCow)
+                return plugin.getConfigManager().mushroomCowMessage;
 			else if (mob instanceof Cow)
-				if (mob instanceof MushroomCow)
-					// MushroomCow is a subclass of Cow
-					return plugin.getConfigManager().mushroomCowMessage;
-				else
-					return plugin.getConfigManager().cowCmdDesc;
+                return plugin.getConfigManager().cowCmdDesc;
 			else if (mob instanceof Horse)
 				return plugin.getConfigManager().horseMessage;
 			else if (mob instanceof Ocelot)
@@ -1403,7 +1421,15 @@ public class RewardManager {
 
 		} else {
 			if (Server.isMC121OrNewer()){
-                if(mob instanceof CopperGolem)
+                if(mob instanceof CamelHusk)
+                    return plugin.getConfigManager().camelHuskMoneyChance;
+                else if(mob instanceof Nautilus)
+                    return plugin.getConfigManager().nautilusMoneyChance;
+                else if(mob instanceof Parched)
+                    return plugin.getConfigManager().parchedMoneyChance;
+                else if(mob instanceof ZombieNautilus)
+                    return plugin.getConfigManager().zombieNautilusMoneyChance;
+                else if(mob instanceof CopperGolem)
                     return plugin.getConfigManager().coppergolemMoneyChance;
 				else if (mob instanceof Creaking)
 					return plugin.getConfigManager().creakingMoneyChance;
@@ -1647,12 +1673,10 @@ public class RewardManager {
 				return plugin.getConfigManager().batCmdRunChance;
 			else if (mob instanceof Chicken)
 				return plugin.getConfigManager().chickenCmdRunChance;
+            else if (mob instanceof MushroomCow)
+                return plugin.getConfigManager().mushroomCowCmdRunChance;
 			else if (mob instanceof Cow)
-				if (mob instanceof MushroomCow)
-					// MushroomCow is a subclass of Cow
-					return plugin.getConfigManager().mushroomCowCmdRunChance;
-				else
-					return plugin.getConfigManager().cowCmdRunChance;
+                return plugin.getConfigManager().cowCmdRunChance;
 			else if (mob instanceof Horse)
 				return plugin.getConfigManager().horseCmdRunChance;
 			else if (mob instanceof Ocelot)
@@ -1716,7 +1740,15 @@ public class RewardManager {
 
 		} else {
 			if (Server.isMC121OrNewer()){
-                if (mob instanceof CopperGolem)
+                if (mob instanceof CamelHusk)
+                    return plugin.getConfigManager().camelHuskMcMMOSkillRewardChance;
+                else if (mob instanceof Nautilus)
+                    return plugin.getConfigManager().nautilusMcMMOSkillRewardChance;
+                else if (mob instanceof Parched)
+                    return plugin.getConfigManager().parchedMcMMOSkillRewardChance;
+                else if (mob instanceof ZombieNautilus)
+                    return plugin.getConfigManager().zombieNautilusMcMMOSkillRewardChance;
+                else if (mob instanceof CopperGolem)
                     return plugin.getConfigManager().coppergolemMcMMOSkillRewardChance;
 				else if (mob instanceof Creaking)
 					return plugin.getConfigManager().creakingMcMMOSkillRewardChance;
@@ -1960,12 +1992,10 @@ public class RewardManager {
 				return plugin.getConfigManager().batMcMMOSkillRewardChance;
 			else if (mob instanceof Chicken)
 				return plugin.getConfigManager().chickenMcMMOSkillRewardChance;
+            else if (mob instanceof MushroomCow)
+                return plugin.getConfigManager().mushroomCowMcMMOSkillRewardChance;
 			else if (mob instanceof Cow)
-				if (mob instanceof MushroomCow)
-					// MushroomCow is a subclass of Cow
-					return plugin.getConfigManager().mushroomCowMcMMOSkillRewardChance;
-				else
-					return plugin.getConfigManager().cowMcMMOSkillRewardChance;
+                return plugin.getConfigManager().cowMcMMOSkillRewardChance;
 			else if (mob instanceof Horse)
 				return plugin.getConfigManager().horseMcMMOSkillRewardChance;
 			else if (mob instanceof Ocelot)
@@ -2050,7 +2080,15 @@ public class RewardManager {
 
 		} else {
 			if (Server.isMC121OrNewer()){
-                if (mob instanceof CopperGolem)
+                if (mob instanceof CamelHusk)
+                    return getMcMMOXP(mob, plugin.getConfigManager().camelHuskMcMMOSkillRewardAmount);
+                else if (mob instanceof Nautilus)
+                    return getMcMMOXP(mob, plugin.getConfigManager().nautilusMcMMOSkillRewardAmount);
+                else if (mob instanceof Parched)
+                    return getMcMMOXP(mob, plugin.getConfigManager().parchedMcMMOSkillRewardAmount);
+                else if (mob instanceof ZombieNautilus)
+                    return getMcMMOXP(mob, plugin.getConfigManager().zombieNautilusMcMMOSkillRewardAmount);
+                else if (mob instanceof CopperGolem)
                     return getMcMMOXP(mob, plugin.getConfigManager().coppergolemMcMMOSkillRewardAmount);
 				else if (mob instanceof Creaking)
 					return getMcMMOXP(mob, plugin.getConfigManager().creakingMcMMOSkillRewardAmount);
@@ -2294,12 +2332,10 @@ public class RewardManager {
 				return getMcMMOXP(mob, plugin.getConfigManager().batMcMMOSkillRewardAmount);
 			else if (mob instanceof Chicken)
 				return getMcMMOXP(mob, plugin.getConfigManager().chickenMcMMOSkillRewardAmount);
+            else if (mob instanceof MushroomCow)
+                return getMcMMOXP(mob, plugin.getConfigManager().mushroomCowMcMMOSkillRewardAmount);
 			else if (mob instanceof Cow)
-				if (mob instanceof MushroomCow)
-					// MushroomCow is a subclass of Cow
-					return getMcMMOXP(mob, plugin.getConfigManager().mushroomCowMcMMOSkillRewardAmount);
-				else
-					return getMcMMOXP(mob, plugin.getConfigManager().cowMcMMOSkillRewardAmount);
+                return getMcMMOXP(mob, plugin.getConfigManager().cowMcMMOSkillRewardAmount);
 			else if (mob instanceof Horse)
 				return getMcMMOXP(mob, plugin.getConfigManager().horseMcMMOSkillRewardAmount);
 			else if (mob instanceof Ocelot)
@@ -2361,7 +2397,15 @@ public class RewardManager {
 
 		} else {
 			if (Server.isMC121OrNewer()){
-                if (mob instanceof CopperGolem)
+                if (mob instanceof CamelHusk)
+                    return plugin.getConfigManager().camelHuskEnabled;
+                else if (mob instanceof Nautilus)
+                    return plugin.getConfigManager().nautilusEnabled;
+                else if (mob instanceof Parched)
+                    return plugin.getConfigManager().parchedEnabled;
+                else if (mob instanceof ZombieNautilus)
+                    return plugin.getConfigManager().zombieNautilusEnabled;
+                else if (mob instanceof CopperGolem)
                     return plugin.getConfigManager().coppergolemEnabled;
                 else if (mob instanceof Creaking)
 					return plugin.getConfigManager().creakingEnabled;
@@ -2605,12 +2649,10 @@ public class RewardManager {
 				return plugin.getConfigManager().batEnabled;
 			else if (mob instanceof Chicken)
 				return plugin.getConfigManager().chickenEnabled;
+            else if (mob instanceof MushroomCow)
+                return plugin.getConfigManager().mushroomCowEnabled;
 			else if (mob instanceof Cow)
-				if (mob instanceof MushroomCow)
-					// MushroomCow is a subclass of Cow
-					return plugin.getConfigManager().mushroomCowEnabled;
-				else
-					return plugin.getConfigManager().cowEnabled;
+                return plugin.getConfigManager().cowEnabled;
 			else if (mob instanceof Horse)
 				return plugin.getConfigManager().horseEnabled;
 			else if (mob instanceof Ocelot)
@@ -2676,7 +2718,15 @@ public class RewardManager {
 
 		} else {
 			if (Server.isMC121OrNewer()){
-                if (mob instanceof CopperGolem)
+                if (mob instanceof CamelHusk)
+                    return plugin.getConfigManager().camelHuskHeadDropHead;
+                else if (mob instanceof Nautilus)
+                    return plugin.getConfigManager().nautilusHeadDropHead;
+                else if (mob instanceof Parched)
+                    return plugin.getConfigManager().parchedHeadDropHead;
+                else if (mob instanceof ZombieNautilus)
+                    return plugin.getConfigManager().zombieNautilusHeadDropHead;
+                else if (mob instanceof CopperGolem)
                     return plugin.getConfigManager().coppergolemHeadDropHead;
 				else if (mob instanceof Creaking)
 					return plugin.getConfigManager().creakingHeadDropHead;
@@ -2920,12 +2970,10 @@ public class RewardManager {
 				return plugin.getConfigManager().batHeadDropHead;
 			else if (mob instanceof Chicken)
 				return plugin.getConfigManager().chickenHeadDropHead;
+            else if (mob instanceof MushroomCow)
+                return plugin.getConfigManager().mushroomCowHeadDropHead;
 			else if (mob instanceof Cow)
-				if (mob instanceof MushroomCow)
-					// MushroomCow is a subclass of Cow
-					return plugin.getConfigManager().mushroomCowHeadDropHead;
-				else
-					return plugin.getConfigManager().cowHeadDropHead;
+                return plugin.getConfigManager().cowHeadDropHead;
 			else if (mob instanceof Horse)
 				return plugin.getConfigManager().horseHeadDropHead;
 			else if (mob instanceof Ocelot)
@@ -2994,7 +3042,15 @@ public class RewardManager {
 
 		} else {
 			if (Server.isMC121OrNewer()){
-                if (mob instanceof CopperGolem)
+                if (mob instanceof CamelHusk)
+                    return plugin.getConfigManager().camelHuskHeadDropChance;
+                else if (mob instanceof Nautilus)
+                    return plugin.getConfigManager().nautilusHeadDropChance;
+                else if (mob instanceof Parched)
+                    return plugin.getConfigManager().parchedHeadDropChance;
+                else if (mob instanceof ZombieNautilus)
+                    return plugin.getConfigManager().zombieNautilusHeadDropChance;
+                else if (mob instanceof CopperGolem)
                     return plugin.getConfigManager().coppergolemHeadDropChance;
 				else if (mob instanceof Creaking)
 					return plugin.getConfigManager().creakingHeadDropChance;
@@ -3237,12 +3293,10 @@ public class RewardManager {
 				return plugin.getConfigManager().batHeadDropChance;
 			else if (mob instanceof Chicken)
 				return plugin.getConfigManager().chickenHeadDropChance;
+            else if (mob instanceof MushroomCow)
+                return plugin.getConfigManager().mushroomCowHeadDropChance;
 			else if (mob instanceof Cow)
-				if (mob instanceof MushroomCow)
-					// MushroomCow is a subclass of Cow
-					return plugin.getConfigManager().mushroomCowHeadDropChance;
-				else
-					return plugin.getConfigManager().cowHeadDropChance;
+                return plugin.getConfigManager().cowHeadDropChance;
 			else if (mob instanceof Horse)
 				return plugin.getConfigManager().horseHeadDropChance;
 			else if (mob instanceof Ocelot)
@@ -3310,7 +3364,15 @@ public class RewardManager {
 
 		} else {
 			if (Server.isMC121OrNewer()){
-                if(mob instanceof CopperGolem)
+                if(mob instanceof CamelHusk)
+                    return plugin.getConfigManager().camelHuskHeadMessage;
+                else if(mob instanceof Nautilus)
+                    return plugin.getConfigManager().nautilusHeadMessage;
+                else if(mob instanceof Parched)
+                    return plugin.getConfigManager().parchedHeadMessage;
+                else if(mob instanceof ZombieNautilus)
+                    return plugin.getConfigManager().zombieNautilusHeadMessage;
+                else if(mob instanceof CopperGolem)
                     return plugin.getConfigManager().coppergolemHeadMessage;
                 else if (mob instanceof Creaking)
 					return plugin.getConfigManager().creakingHeadMessage;
@@ -3554,12 +3616,10 @@ public class RewardManager {
 				return plugin.getConfigManager().batHeadMessage;
 			else if (mob instanceof Chicken)
 				return plugin.getConfigManager().chickenHeadMessage;
+            else if (mob instanceof MushroomCow)
+                return plugin.getConfigManager().mushroomCowHeadMessage;
 			else if (mob instanceof Cow)
-				if (mob instanceof MushroomCow)
-					// MushroomCow is a subclass of Cow
-					return plugin.getConfigManager().mushroomCowHeadMessage;
-				else
-					return plugin.getConfigManager().cowHeadMessage;
+                return plugin.getConfigManager().cowHeadMessage;
 			else if (mob instanceof Horse)
 				return plugin.getConfigManager().horseHeadMessage;
 			else if (mob instanceof Ocelot)
@@ -3627,7 +3687,15 @@ public class RewardManager {
 
 		} else {
 			if (Server.isMC121OrNewer()){
-                if (mob instanceof CopperGolem)
+                if (mob instanceof CamelHusk)
+                    return getPrice(mob, plugin.getConfigManager().camelHuskHeadPrize);
+                else if (mob instanceof Nautilus)
+                    return getPrice(mob, plugin.getConfigManager().nautilusHeadPrize);
+                else if (mob instanceof Parched)
+                    return getPrice(mob, plugin.getConfigManager().parchedHeadPrize);
+                else if (mob instanceof ZombieNautilus)
+                    return getPrice(mob, plugin.getConfigManager().zombieNautilusHeadPrize);
+                else if (mob instanceof CopperGolem)
                     return getPrice(mob, plugin.getConfigManager().coppergolemHeadPrize);
 				else if (mob instanceof Creaking)
 					return getPrice(mob, plugin.getConfigManager().creakingHeadPrize);
@@ -3871,12 +3939,10 @@ public class RewardManager {
 				return getPrice(mob, plugin.getConfigManager().batHeadPrize);
 			else if (mob instanceof Chicken)
 				return getPrice(mob, plugin.getConfigManager().chickenHeadPrize);
+            else if (mob instanceof MushroomCow)
+                return getPrice(mob, plugin.getConfigManager().mushroomCowHeadPrize);
 			else if (mob instanceof Cow)
-				if (mob instanceof MushroomCow)
-					// MushroomCow is a subclass of Cow
-					return getPrice(mob, plugin.getConfigManager().mushroomCowHeadPrize);
-				else
-					return getPrice(mob, plugin.getConfigManager().cowHeadPrize);
+                return getPrice(mob, plugin.getConfigManager().cowHeadPrize);
 			else if (mob instanceof Horse)
 				return getPrice(mob, plugin.getConfigManager().horseHeadPrize);
 			else if (mob instanceof Ocelot)
