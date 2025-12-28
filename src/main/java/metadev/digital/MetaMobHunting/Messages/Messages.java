@@ -370,7 +370,12 @@ public class Messages {
 	}
 
 	private String getStringInternal(String key) {
-		String value = mTranslationTable.get(key);
+        if (mTranslationTable == null ) {
+            metadev.digital.metacustomitemslib.messages.MessageHelper.debug("Attempted to get internal string but there is no valid translation table or it hasn't been set up yet.");
+            return "TRANSLATION_ERROR! TRANSLATION_TABLE_NPE FOR KEY: " + key;
+        }
+
+        String value = mTranslationTable.get(key);
 
 		if (value == null) {
 			MessageHelper.warning( "mTranslationTable does not have: " + key.toString());
