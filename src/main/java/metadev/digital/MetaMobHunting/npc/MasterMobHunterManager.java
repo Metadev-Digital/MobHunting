@@ -188,8 +188,6 @@ public class MasterMobHunterManager implements Listener {
 				Trait trait = getSentinelOrSentryTrait(npc);
 				if (trait != null) {
 					trait.getNPC().faceLocation(event.getClicker().getLocation());
-					trait.getNPC().getDefaultSpeechController()
-							.speak(new SpeechContext("Don't hit me!!!", event.getClicker()));
 					trait.getNPC().getNavigator().setTarget(event.getClicker(), true);
 				}
 			} else {

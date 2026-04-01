@@ -98,7 +98,6 @@ public class CitizensCompat implements Listener, IMobHuntCompat, IFeatureHolder 
     @Override
     public void shutdown() throws SpinupShutdownException {
         if (isActive() && loaded) {
-            citizensAPI.getTraitFactory().deregisterTrait(trait);
             successfullyShutdownMessage();
             loaded = false;
         }
