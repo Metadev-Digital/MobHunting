@@ -47,7 +47,7 @@ softdepend:
   - LevelledMobs
   - WeaponMechanics
   - ImprovedFactions
-api-version: 26.1.1
+api-version: 26.1
 commands:
   mobhunt:
     description: Allows you to configure mob hunt
